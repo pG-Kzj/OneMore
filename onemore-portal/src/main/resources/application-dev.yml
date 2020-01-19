@@ -1,0 +1,41 @@
+server:
+  port: 8001
+spring:
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/onemore?useUnicode=true&characterEncoding=utf-8&serverTimezone=GMT%2B8
+    username: root
+    password: root
+    druid:
+      initial-size: 5
+      min-idle: 10
+      max-active: 20
+      web-stat-filter:
+        exclusions: "*.js,*.gif,*.jpg,*.png,*.css,*.ico,/druid/*"
+      stat-view-servlet:
+        login-username: onemore
+        login-password: 123456
+  redis:
+    host: 192.168.135.129
+    port: 6379
+    password: 
+    pool:
+      max-active: 8
+      max-wait: -1
+      max-idle: 8
+      min-idle: 0
+    timeout: 3000
+  data:
+    mongodb:
+      host: 192.168.135.129
+      port: 27017
+      database: onemore-portal
+mybatis-plus:
+  #mapper-locations: com/onemore/portal/mapper/*
+  type-aliases-package: com.onemore.portal.entity
+  global-config:
+    db-column-underline: true
+  configuration:
+    database-id: mysql
+logging:
+  level:
+    root: info
