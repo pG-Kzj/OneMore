@@ -15,30 +15,30 @@ import lombok.Setter;
 @TableName("dynamic")
 public class Dynamic implements Serializable {
 
-	private static final long serialVersionUID = 4292208320612015835L;
+    private static final long serialVersionUID = 4292208320612015835L;
 
-	@TableId(type = IdType.AUTO)
-	private Integer id;
+    @TableId(type = IdType.AUTO)
+    private Integer id;
 
-	private String type;
+    private String type;
 
-	private String title;
+    private String title;
 
-	private String content;
+    private String content;
 
-	private String topic;
+    private String topic;
 
-	private Integer authorId;
+    private Integer authorId;
 
-	private Integer parentId;
+    private Integer parentId;
 
-	private Integer commentsNum;
+    private Integer commentsNum;
 
-	private Integer likesNum;
+    private Integer likesNum;
 
-	private Date crateTime;
+    private Date createTime;
 
-	public Dynamic() {
-	}
+    public Dynamic() {
+    }
 
 }

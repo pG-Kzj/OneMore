@@ -8,8 +8,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @MapperScan("com.onemore.portal.mapper")
 public class OnemorePortalServerApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(OnemorePortalServerApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(OnemorePortalServerApplication.class, args);
+    }
 
 }
