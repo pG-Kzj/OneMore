@@ -15,9 +15,9 @@ spring:
         login-username: onemore
         login-password: 123456
   redis:
-    host: 192.168.135.129
+    host: 127.0.0.1
     port: 6379
-    password: 
+    password:
     pool:
       max-active: 8
       max-wait: -1
@@ -26,7 +26,7 @@ spring:
     timeout: 3000
   data:
     mongodb:
-      host: 192.168.135.129
+      host: 127.0.0.1
       port: 27017
       database: onemore-portal
 mybatis-plus:
@@ -39,3 +39,11 @@ mybatis-plus:
 logging:
   level:
     root: info
+
+
+#pagehelper分页插件配置
+pagehelper:
+  helper-dialect: mysql
+  reasonable: true
+  supportMethodsArguments: supportMethodsArguments=true
+  params: count=countSql
