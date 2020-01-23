@@ -1,6 +1,6 @@
 package com.onemore.portal.util;
 
-import com.onemore.portal.entity.Result;
+import com.onemore.portal.vo.Result;
 import com.onemore.portal.enums.ResultEnum;
 
 /**

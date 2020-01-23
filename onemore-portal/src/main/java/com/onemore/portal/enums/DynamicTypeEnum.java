@@ -2,6 +2,7 @@ package com.onemore.portal.enums;
 
 import lombok.Getter;
 
+
 @Getter
 public enum DynamicTypeEnum {
 
@@ -25,4 +26,6 @@ public enum DynamicTypeEnum {
         this.key = key;
         this.name = name;
     }
+
+
 }

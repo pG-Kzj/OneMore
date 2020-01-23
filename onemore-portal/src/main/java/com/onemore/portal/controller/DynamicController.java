@@ -1,20 +1,17 @@
 package com.onemore.portal.controller;
 
 import com.baomidou.mybatisplus.plugins.Page;
-import com.baomidou.mybatisplus.plugins.pagination.PageHelper;
-import com.github.pagehelper.IPage;
-import com.github.pagehelper.PageInfo;
-import com.onemore.portal.entity.Result;
+import com.onemore.portal.vo.Result;
 import com.onemore.portal.util.ResultUtil;
+import com.onemore.portal.vo.DynamicVO;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import com.onemore.portal.entity.Dynamic;
 import com.onemore.portal.service.DynamicService;
-
-import java.util.List;
 
 import static com.onemore.portal.enums.ResultEnum.USER_NOT_EXIST;
 
@@ -23,7 +20,8 @@ import static com.onemore.portal.enums.ResultEnum.USER_NOT_EXIST;
  */
 @Log
 @RestController
-@RequestMapping("dynamic")
+//@RequestMapping("dynamic")
+@Api("主表信息")
 public class DynamicController {
 
     @Autowired
@@ -35,34 +33,37 @@ public class DynamicController {
      * @param dynamic
      * @return
      */
-    @RequestMapping(value = "insert", method = RequestMethod.POST)
+    @ApiOperation(value = "增加一条主表数据", notes = "增加一条主表数据,作者id即登陆人的id；如果是转发，则parentid为被转发的文章的id")
+    @PostMapping(value = "dynamic")
     public Result insert(Dynamic dynamic) {
-        dynamicService.insert(dynamic);
+        dynamicService.save(dynamic);
         return ResultUtil.success();
     }
 
     /**
      * 查询dynamic 查询所有,分页
      *
-     * @param ids
+     * @param pageNo
+     * @param pageSize
      * @return
      */
     @GetMapping("dynamics")
-    public Result<Dynamic> select(@RequestParam(defaultValue = "0") int pageNo, //页码
+    @ApiOperation(value = "查询所有,分页", notes = "查询所有,分页,传入pageNo、pageSize参数即可")
+    public Result<Dynamic> select(@RequestParam(defaultValue = "1") int pageNo, //页码
                                   @RequestParam(defaultValue = "10") int pageSize) {//一页数据
-        PageHelper.startPage(pageNo, pageSize);
-        List<Dynamic> dynamics = dynamicService.getDynamics(pageNo, pageSize);
+        Page<DynamicVO> dynamics = dynamicService.getDynamics(pageNo, pageSize);
         return ResultUtil.success(dynamics);
     }
 
     /**
      * 查询dynamic 查询单个
      *
-     * @param ids
+     * @param id
      * @return
      */
-    @GetMapping("dynamic")
-    public Result selectOne(Integer id) {
+    @GetMapping("dynamic/{id}")
+    @ApiOperation(value = "查询单条数据", notes = "查询单条数据，传入id即可")
+    public Result selectOne(@PathVariable("id") Integer id) {
         Dynamic dynamic = dynamicService.getDynamic(id);
         if (dynamic != null) {
             return ResultUtil.success(dynamic);
@@ -76,7 +77,8 @@ public class DynamicController {
      * @param id
      * @return
      */
-    @GetMapping("deleteDynamic")
+    @DeleteMapping("dynamic")
+    @ApiOperation(value = "删除单条数据", notes = "删除单条数据，传入id即可")
     public Result delete(Integer id) {
         int delete = dynamicService.delete(id);
         if (delete > 0) {
@@ -91,7 +93,8 @@ public class DynamicController {
      * @param dynamic
      * @return
      */
-    @PostMapping("updateDynamic")
+    @PutMapping("dynamic")
+    @ApiOperation(value = "更新单条数据", notes = "更新单条数据，传入参数即可")
     public Result update(Dynamic dynamic) {
         int update = dynamicService.update(dynamic);
         if (update > 0) {
