@@ -1,12 +1,19 @@
 package com.onemore.portal.enums;
 
+import com.baomidou.mybatisplus.enums.IEnum;
+import lombok.Getter;
+
+import java.io.Serializable;
+
 /**
  * 返回类的枚举
  *
  * @author kzj
  */
+@Getter
 public enum ResultEnum {
     //这里是可以自己定义的，方便与前端交互即可
+
     UNKNOWN_ERROR(-1, "未知错误"),
     SUCCESS(10000, "成功"),
     USER_NOT_EXIST(404, "数据不存在"),
@@ -21,11 +28,5 @@ public enum ResultEnum {
         this.msg = msg;
     }
 
-    public Integer getCode() {
-        return code;
-    }
 
-    public String getMsg() {
-        return msg;
-    }
 }

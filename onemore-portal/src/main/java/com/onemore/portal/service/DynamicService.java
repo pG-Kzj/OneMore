@@ -1,6 +1,10 @@
 package com.onemore.portal.service;
 
+import com.baomidou.mybatisplus.plugins.Page;
+import com.github.pagehelper.PageInfo;
 import com.onemore.portal.entity.Dynamic;
+import com.onemore.portal.vo.DynamicVO;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -9,15 +13,14 @@ import java.util.List;
  */
 public interface DynamicService {
 
-    void insert(Dynamic dynamic);
+    void save(Dynamic dynamic);
 
     /**
      * 获取所有
      *
-     * @param pageNo
      * @return
      */
-    List<Dynamic> getDynamics(int pageNo, int pageSize);
+    Page<DynamicVO> getDynamics(int pageNo, int pageSize);
 
     Dynamic getDynamic(Integer id);
 
